@@ -168,4 +168,86 @@ echo $z;
 
 
 
+
+
+$counter = 0; 
+
+while ($counter < 5) 
+{
+   echo "Ёта строка выведетс€ 5 раз <br>"; 
+   $counter++;
+}
+
+
+
+
+$counter = 6; 
+
+do
+{
+   echo "Ёта строка выведетс€ ~ раз <br>"; 
+   $counter++;
+}
+while ($counter < 10);
+
+
+
+
+$eto_massiv = array ("Apple", "Limon", "Chery", "Oranges"); 
+$eto_massiv  [4] = "php";
+$eto_massiv  [5] = "html";
+$eto_massiv  [6] = "c++";
+
+//$eto_massiv  [1] = "arbuz";
+
+foreach ($eto_massiv  as $key => $value) // при переборе: $key - индекс элемента массива, $value - значение элемента массива
+{
+	
+	//echo $key;
+	//$key+=2;            разобратьс€ почему значение индекса плюсуетс€, но элементов выводит 4
+	//echo $key;
+	
+   echo "¬ы выбрали фрукт - $value <br>"; 
+}
+
+
+
+echo substr("Hello world", 6, 5);
+
+echo strpos("Hello world", 'world'); // получим 6
+
+echo "<br>";
+
+$mystring = 'Hello world';
+$findme   = 'world';
+$pos = strpos('Hello world', 'world');
+echo $pos;
+
+echo "<br>";
+
+
+
+
+
+
+$yashiki_s_arbuzami[0] = 30; 
+$yashiki_s_arbuzami[1] = 50; 
+$yashiki_s_arbuzami["tretei_yasik"] = 150;
+
+
+echo $yashiki_s_arbuzami["tretei_yasik"], "<br>";
+
+
+$arr1[0] = "PHP"; 
+$arr1[1] = "HTML"; 
+$arr1[2] = "CSS";
+
+unset($arr1[1]);
+
+foreach($arr1 as $key => $value) {
+    echo $value.'<br/>';
+}
+
+
+
 ?>
