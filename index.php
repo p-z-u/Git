@@ -614,6 +614,157 @@ echo $result;
 
 echo "<br><br>";
 
+
+/*$counter = 1; 
+
+while ($counter <= 100) 
+{
+   echo "$counter<br>"; 
+   $counter++;
+}
+
+
+for ($i = 1; $i <= 100; $i++) 
+{
+	
+   echo $i, "<br>"; 
+   
+}
+
+$counter = 11; 
+
+while ($counter <= 33) 
+{
+   echo "$counter<br>"; 
+   $counter++;
+}
+
+for ($i = 11; $i <= 33; $i++) 
+{
+	
+   echo $i, "<br>"; 
+   
+}*/
+
+
+/*$counter = 0; 
+
+while ($counter <= 100) 
+{
+   echo "$counter<br>"; 
+   $counter+=2; //чтобы получались чётные числа (прибавляется 2 к переменной)
+}
+
+for ($i = 0; $i <= 100; $i+=2) 
+{
+	
+   echo $i, "<br>"; 
+   
+}*/
+
+/*$num=1000;
+$i = 0;
+while ($num > 50) 
+{
+   
+   $num/=2;
+   echo "$num<br>"; 
+  
+  $i++;
+ 
+}
+
+echo $i;*/
+
+$i = 0;
+for ($num=1000; $num > 50; $num/=2) 
+{
+	
+   echo $num, "<br>"; 
+   $i++;
+}
+
+echo $i, "<br>";
+
+
+$cvet = array('green'=>'зеленый', 'red'=>'красный','blue'=>'голубой');
+
+foreach($cvet as $key => $value) { 
+   echo "[{$key}]<br/>";
+}
+
+foreach($cvet as $value)
+{ 
+   echo $value, "<br>";
+} 
+
+
+
+
+
+$zarp = array('Коля'=>'200', 'Вася'=>'300','Петя'=>'400');
+
+foreach($zarp as $key => $value)
+{ 
+  echo $key, ' - зарплата ', $value, ' долларов <br>';
+} 
+
+
+
+
+$color = array('colors');
+
+
+//$color[][] = "enru"; 
+
+/*foreach($color as $key => $value) { 
+
+
+  $color["en"] = array("green", "red", "blue"); 
+  $color["ru"] = array("зеленый", "красный", "голубой");
+
+}
+
+print_r($color);*/
+
+
+$color = array(
+    "en" => array("green", "red", "blue"), 
+    "ru" => array("зеленый", "красный", "голубой"), 
+);
+
+print_r($color);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo "<br><br>";
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////// Функции в PHP, их синтаксис, создание и вызов /////////////////////////////////////////////////////////////////////////////////////////////////////////////
