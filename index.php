@@ -547,9 +547,9 @@ echo "<br><br>";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////// Задачи на циклы в PHP /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////// Задачи на PHP /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-echo "<br> <b>Задачи на циклы в PHP</b> <br><br>";
+echo "<br> <b>Задачи на PHP</b> <br><br>";
 
 
 
@@ -763,6 +763,9 @@ print_r($color);
 
 
 
+
+
+
 echo "<br><br>";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -807,11 +810,62 @@ echo "<br><br>";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////// Использование PHP в связке с HTML /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+echo "<br> <b>Использование PHP в связке с HTML</b> <br>";
 
 
+/*$title = 'Моя первая страница';
+$now = date('d.m.Y H:i');
+ 
+$HTML = '<html><title>'.$title.'</title><body>
+<table width="100%" height="100%" border=0><tr valign="middle"><td align="center">Сегодня: '.$now.'</td></tr></table>
+</form>
+</body></html>';
+ 
+print $HTML;*/
+
+ 
+/*$HTML = '<html><body>
+
+<form action="app/check.php" method="post">
+
+<p>Имя: <input name="name" type="text"></p>
+
+<p>Фамилия: <input name="surname" type="text"></p>
+
+<p>E-mail: <input name="email" type="text"></p>
+
+<p>Сообщение: <br /><textarea name="message" cols="30" rows="5"></textarea></p>
+
+<p><input type="submit" value="Отправить"></p>
+
+</form>
+
+</body></html>';*/
+ 
+//print $HTML;
 
 
+?>
 
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>Получаем данные форму</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+		<form action="app/check.php" method="post">
+			<p>Имя: <input name="name" type="text"></p>
+			<p>Фамилия: <input name="surname" type="text"></p>
+			<p>E-mail: <input name="email" type="text"></p>
+			<p>Сообщение: <br /><textarea name="message" cols="30" rows="5"></textarea></p>
+			<p><input type='submit' value='Отправить'></p>
+		</form>
+	</body>
+</html>
 
+<?php
 
 ?>
