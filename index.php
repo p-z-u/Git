@@ -868,4 +868,406 @@ print $HTML;*/
 
 <?php
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////// ООП: классы /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+echo "<br> <b>ООП: классы; свойства и функции;</b> <br>";
+
+
+
+class FirstClass
+{
+	
+//echo $hello;	
+	
+   function __construct($hello = "hi") {
+      return $hello;
+   }
+   
+ function __destruct() {
+      echo "Вызов деструктора";
+   }
+   
+}
+
+
+
+$instance = new FirstClass(); // вернет строку "hi"
+
+//echo "<br>";
+
+$instance = new FirstClass("hello"); // вернет строку "hello"
+
+echo "<br>";
+
+
+   
+///////////////////////////
+
+
+class SecondClass {
+   private $var1;
+
+   public function setVar1($value) {
+         $this->var1 = $value;
+		 
+   }
+}
+
+$instance =  new SecondClass();
+
+$instance->setVar1("orange"); // установим значение "orange" для переменной var1
+
+////////////////////// константы ///////////////////
+
+echo "<br>";
+
+class ThirdClass {
+	public $oip = 5;
+	
+   const CONSTANT = "value";
+   //const CONSTANT2  = 80 * 2 + 40; // >= PHP 5.6
+}
+
+// доступ к константе
+echo ThirdClass:: CONSTANT;
+//echo ThirdClass:: $oip;
+
+// через метод в классе
+class FourthClass {
+  const CONSTANT = "orange";
+   
+
+   
+  function myFunc() {
+         echo self::CONSTANT;
+   }
+   
+   //myFunc();
+   
+}
+
+//echo FourthClass:: myFunc();
+
+//////////////////
+
+class FifthClass {
+   public $var1 = "public";
+   private $var2 = "private";
+   protected $var3 = "protected";
+
+   public function func1() {
+        echo $this->var1;
+        echo $this->var2;
+        echo $this->var3; 
+   }
+
+   private function func2() {
+   }
+    
+   protected function func3() {
+   }
+}
+
+$instance = new FifthClass();
+
+$instance->var1; // работает
+$instance->func1(); // работает, результат: public private protected
+//$instance->var2; // ошибка
+//$instance->var3; // ошибка
+//$instance->func2(); // ошибка
+//$instance->func3(); // ошибка
+
+echo "<br><br>";
+
+/////////////////////// наследование ///////////////////////////
+
+/*class SixthClass {
+    public $var1 = "value1";
+
+    public function func1() {
+    }
+}
+
+class SeventhClass extends SixthClass {
+    public $var2 = "value2";
+}
+
+$class6 = new SixthClass();
+$class7 = new SeventhClass();
+
+$class6->var1; // value1
+$class7->var1; // value1
+$class7->func1(); // не работает
+$class7->var2; // value2
+
+
+echo "<br><br>";*/
+
+abstract class AbstClass {
+    /* Данный метод должен быть определён в дочернем классе */
+    abstract protected function getValue();
+   
+    /* Общий метод */
+    public function printValue() {
+        print $this->getValue() . "<br>";
+    }
+}
+
+class Class10 extends AbstClass
+{
+    protected function getValue() {
+        return "FirstClass";
+    }    
+}
+
+$class1 = new Class10;
+$class1->printValue();
+
+echo "abc <br>";
+
+class Class11
+{
+    public static $var1 = "var1 <br>";
+
+    public function staticValue() {
+        return self::$var1;
+    }
+}
+
+class Class12 extends Class11
+{
+    public function var1Static() {
+        return parent::$var1;
+    }
+}
+
+echo  Class11::$var1; 
+
+
+
+class Class13 {
+    public static function myStaticMethod() {
+        
+		echo "паблик статик метод <br>";
+		
+    }
+}
+
+Class13::myStaticMethod();
+
+
+////////////////////// интерфейсы
+
+interface CarTemplate
+{
+    public function getId(); // получить id автомобиля
+    public function getName(); // получить название
+    public function add(); // добавить новый автомобиль
+}
+
+class Audi implements CarTemplate {
+     function getId() {
+          return "1-ATHD98";
+    }
+
+    function getName() {
+         return "Audi";
+    }
+
+    function add() {
+         // 
+    }
+}
+
+ 
+class Bmw implements CarTemplate {
+    function getId() {
+          return "2-HHFY14";
+    }
+
+    function getName() {
+         return "BMW";
+    }
+
+    function add() {
+         // 
+    }
+
+}
+
+
+/////////////// перегрузка свойств
+
+class MyClass1 {
+	public $c = "c value <br>";
+
+	public function __set($name, $value) {
+		echo "__set, property - {$name} is not exists <br>";
+	}
+	
+	public function __get($name) {
+		echo "__get, property - {$name} is not exists <br>";
+	}
+}
+
+$obj = new MyClass1;
+$obj->a = 1; // запись в свойство (свойство не существует)
+echo $obj->b; // получаем значение свойства (свойство не существует)
+echo $obj->c; // получаем значение свойства (свойство существует)
+
+/////////////// перегрузка методов
+
+class MyClass2 {
+	public function __call($name, $arguments) {
+		return "__call, method - {$name} is not exists <br>";
+	}
+	
+	public function getId() {
+		return "AH-15474 <br>";
+	}
+}
+
+$obj = new MyClass2;
+echo $obj->getName(); // вызов метода (метод не существует)
+echo $obj->getId(); // вызов метода (метод существует)
+
+////////////////////////// преобразование класса в строку
+
+class MyClass {
+	
+	public $qwe = 5;
+	
+	public function __toString() {
+		return "MyClass {$qwe} class <br>";
+	}
+}
+
+$obj = new MyClass;
+echo $obj; // результат: MyClass class
+
+///////////////////////////////////////// Метод __invoke() вызывается, когда объект пытаются вызвать как функцию.
+
+class MyClass3 {
+	public function __invoke($a) {
+		return $a;
+	}
+}
+
+$obj = new MyClass3;
+echo $obj(75), "<br>"; // результат: 75
+
+
+///////////////////
+
+class MyClass0 {
+	
+	public function names(array $names) { // тип array
+		$res = "<ul>";
+		foreach($names as $name) {
+			$res .= "<li>{$name}</li>";
+		}
+		return $res .= "</ul>";
+	}
+	
+	public function otherClassTypeFunc(OtherClass $otherClass) { // тип OtherClass
+		return $otherClass->var1;
+	}
+}
+
+$obj = new MyClass0;
+
+$names = array(
+	'Иван Андреев',
+	'Олег Симонов',
+	'Андрей Ефремов',
+	'Алексей Самсонов'
+);
+echo $obj->names($names); // работает
+
+/*$names = "Олег Симонов"; // из-за преобразования массива в стринговую переменную, метод в классе не может сработать, и вылезает ошибка
+// получим фатальную ошибку: Argument 1 passed to MyClass::names() must be of the type array, string given
+echo $obj->names($names); 
+
+// получим фатальную ошибку: Argument 1 passed to MyClass::names() must be an instance of OtherClass, string given
+echo $obj->otherClassTypeFunc("test string");*/
+
+
+//////////////////////////////////// трейты
+
+trait MyTransliterator {
+	private $letters = array(
+        'а' => 'a',   	'б' => 'b',     'в' => 'v',
+        'г' => 'g',   	'д' => 'd',   	'е' => 'e',
+        'ё' => 'e',   	'ж' => 'zh',  	'з' => 'z',
+        'и' => 'i',   	'й' => 'y',   	'к' => 'k',
+        'л' => 'l',   	'м' => 'm',   	'н' => 'n',
+        'о' => 'o',   	'п' => 'p',   	'р' => 'r',
+        'с' => 's',   	'т' => 't',   	'у' => 'u',
+        'ф' => 'f',   	'х' => 'h',   	'ц' => 'c',
+        'ч' => 'ch',  	'ш' => 'sh',  	'щ' => 'sch',
+        'ь' => '',   	'ы' => 'y',   	'ъ' => '',
+        'э' => 'e',   	'ю' => 'yu',  	'я' => 'ya',
+        'А' => 'A',   	'Б' => 'B',   	'В' => 'V',
+        'Г' => 'G',   	'Д' => 'D',   	'Е' => 'E',
+        'Ё' => 'E',   	'Ж' => 'Zh',  	'З' => 'Z',
+        'И' => 'I',   	'Й' => 'Y',   	'К' => 'K',
+        'Л' => 'L',   	'М' => 'M',   	'Н' => 'N',
+        'О' => 'O',   	'П' => 'P',   	'Р' => 'R',
+        'С' => 'S',   	'Т' => 'T',   	'У' => 'U',
+        'Ф' => 'F',   	'Х' => 'H',   	'Ц' => 'C',
+        'Ч' => 'Ch',  	'Ш' => 'Sh',  	'Щ' => 'Sch',
+        'Ь' => '',  	'Ы' => 'Y',   	'Ъ' => '_',
+        'Э' => 'E',   	'Ю' => 'Yu',  	'Я' => 'Ya',
+        'є' => 'ye', 	'ї' => 'yi', 	'і' => 'i',
+        'Є' => 'YE', 	'Ї' => 'YI', 	'І' => 'I',
+        ' ' => '_'
+    );
+
+	public function translate($str) {
+		// заменяем символы кириллицы на символы латиницы
+		return strtr(trim($str), $this->letters);
+	}
+}
+
+class MyClass20 {
+	use MyTransliterator;
+	
+	private $data;
+	
+	/**
+	*	Некая функция для добавления данных в наш массив 
+	*/
+	public function setData(array $data) {
+		$this->data = $data;
+	}
+	
+	/**
+	*	 Некая фукнция для подготовки данных
+	*/
+	public function getPreparedData() {
+		// допустим, мы хотим сделать адрес страницы по названию
+		// тогда, нам нужно перевести название с кириллическими символами на латиницу
+		$this->data['url'] = strtolower($this->translate($this->data['title']));
+		
+		return $this->data;
+	}
+}
+
+$obj = new MyClass20;
+
+$obj->setData([
+	'title' => 'Не очень простое название для страницы; Сегодня - отличный день для изучения php',
+	'content' => 'Текст страницы'
+]);
+
+$data = $obj->getPreparedData();
+
+echo "<pre>";
+print_r($data);
+echo "</pre>";
+
+
+
 ?>
